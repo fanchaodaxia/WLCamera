@@ -14,10 +14,10 @@ CXX           = cl
 DEFINES       = -DUNICODE -DWIN32 -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_CORE_LIB -DNDEBUG
 CFLAGS        = -nologo -Zm200 -Zc:wchar_t -FS -O2 -MD -Zc:strictStrings -W3 $(DEFINES)
 CXXFLAGS      = -nologo -Zm200 -Zc:wchar_t -FS -O2 -MD -Zc:strictStrings -GR -W3 -w34100 -w34189 -EHsc $(DEFINES)
-INCPATH       = -I"..\WLCamera" -I"." -I"C:\Program Files\Basler\pylon 5\Development\include" -I"..\WLCamera" -I"C:\Qt\5.4\msvc2013\include" -I"C:\Qt\5.4\msvc2013\include\QtCore" -I"release" -I"C:\Qt\5.4\msvc2013\mkspecs\win32-msvc2013" 
+INCPATH       = -I"..\WLCamera" -I"." -I"C:\Program Files\Basler\pylon 5\Development\include" -I"C:\Qt\5.4\msvc2013\include" -I"C:\Qt\5.4\msvc2013\include\QtCore" -I"release" -I"C:\Qt\5.4\msvc2013\mkspecs\win32-msvc2013" 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /INCREMENTAL:NO /SUBSYSTEM:CONSOLE "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:E:\GitProject\WLCamera\WLCamera\lib\Win32\ E:\GitProject\WLCamera\WLCamera\lib\Win32\\GenApi_MD_VC120_v3_0_Basler_pylon_v5_0.lib /LIBPATH:C:\Qt\5.4\msvc2013\lib C:\Qt\5.4\msvc2013\lib\Qt5Core.lib 
+LIBS          = /LIBPATH:E:\GitProject\WLCamera\WLCamera\lib\Win32 E:\GitProject\WLCamera\WLCamera\lib\Win32\GenApi_MD_VC120_v3_0_Basler_pylon_v5_0.lib E:\GitProject\WLCamera\WLCamera\lib\Win32\PylonGUI_MD_VC120_v5_0.lib E:\GitProject\WLCamera\WLCamera\lib\Win32\GCBase_MD_VC120_v3_0_Basler_pylon_v5_0.lib E:\GitProject\WLCamera\WLCamera\lib\Win32\PylonC_MD_VC120.lib E:\GitProject\WLCamera\WLCamera\lib\Win32\PylonUtility_MD_VC120_v5_0.lib E:\GitProject\WLCamera\WLCamera\lib\Win32\PylonBase_MD_VC120_v5_0.lib /LIBPATH:C:\Qt\5.4\msvc2013\lib C:\Qt\5.4\msvc2013\lib\Qt5Core.lib 
 QMAKE         = C:\Qt\5.4\msvc2013\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -48,7 +48,10 @@ SOURCES       = ..\WLCamera\main.cpp \
 OBJECTS       = release\main.obj \
 		release\wlcamera.obj
 
-DIST          =  ..\WLCamera\wlcamera.h ..\WLCamera\main.cpp \
+DIST          =  ..\WLCamera\wlcamera.h \
+		..\WLCamera\PylonIncludes.h \
+		..\WLCamera\BaslerUsbInstantCamera.h \
+		..\WLCamera\PylonGUI.h ..\WLCamera\main.cpp \
 		..\WLCamera\wlcamera.cpp
 QMAKE_TARGET  = WLCamera
 DESTDIR        = release\ #avoid trailing-slash linebreak
@@ -202,7 +205,8 @@ release\main.obj: ..\WLCamera\main.cpp C:\Qt\5.4\msvc2013\include\QtCore\QCoreAp
 		C:\Qt\5.4\msvc2013\include\QtCore\qcontainerfwd.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\qisenum.h \
 		C:\Qt\5.4\msvc2013\include\QtCore\qobject_impl.h \
-		C:\Qt\5.4\msvc2013\include\QtCore\qeventloop.h
+		C:\Qt\5.4\msvc2013\include\QtCore\qeventloop.h \
+		..\WLCamera\wlcamera.h
 
 release\wlcamera.obj: ..\WLCamera\wlcamera.cpp ..\WLCamera\wlcamera.h \
 		"C:\Program Files\Basler\pylon 5\Development\include\pylon\PylonIncludes.h" \
@@ -349,7 +353,9 @@ release\wlcamera.obj: ..\WLCamera\wlcamera.cpp ..\WLCamera\wlcamera.h \
 		"C:\Program Files\Basler\pylon 5\Development\include\pylon\private\DeviceSpecificCameraEventHandlerTie.h" \
 		"C:\Program Files\Basler\pylon 5\Development\include\pylon\usb\_UsbStreamParams.h" \
 		"C:\Program Files\Basler\pylon 5\Development\include\pylon\usb\_UsbEventParams.h" \
-		"C:\Program Files\Basler\pylon 5\Development\include\pylon\usb\_UsbTLParams.h"
+		"C:\Program Files\Basler\pylon 5\Development\include\pylon\usb\_UsbTLParams.h" \
+		"C:\Program Files\Basler\pylon 5\Development\include\pylon\PylonGUI.h" \
+		..\Samples\C++\include\SampleImageCreator.h
 
 ####### Install
 
